@@ -111,21 +111,17 @@ def execute_parts(data, module, PART_1, PART_2):
     for id_test, data_test in enumerate(data["TEST"], start=1):
         data_name = f"TEST {id_test}"
         output_data.append([data_name])
-        if PART_1:
-            output = execute_part(module.part1, data_test, data_name)
-            output_data[-1].extend(output)
-        if PART_2:
-            output = execute_part(module.part2, data_test, data_name)
-            output_data[-1].extend(output)
+        for PART, code in [(PART_1, module.part1), (PART_2, module.part2)]:
+            if PART:
+                output = execute_part(code, data_test, data_name)
+                output_data[-1].extend(output)
     for id_input, data_input in enumerate(data["INPUT"], start=1):
         data_name = f"INPUT {id_input}"
         output_data.append([data_name])
-        if PART_1:
-            output = execute_part(module.part1, data_input, data_name)
-            output_data[-1].extend(output)
-        if PART_2:
-            output = execute_part(module.part2, data_input, data_name)
-            output_data[-1].extend(output)
+        for PART, code in [(PART_1, module.part1), (PART_2, module.part2)]:
+            if PART:
+                output = execute_part(code, data_input, data_name)
+                output_data[-1].extend(output)
 
     return output_data
 

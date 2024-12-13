@@ -2,10 +2,10 @@ import importlib
 
 import AOC_utils as AOC
 
-YEAR, DAY = 2024, 13
+YEAR, DAY = 2024, 12
 
 TEST = True
-INPUT = True
+INPUT = False
 
 PART_1 = True
 PART_2 = True

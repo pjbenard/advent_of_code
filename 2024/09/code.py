@@ -83,7 +83,7 @@ def part2(data):
 
 
 if __name__ == "__main__":
-    with open("2024/data/09_test.txt") as file:
+    with open("2024/09/data/09_test.txt") as file:
         data = file.read().splitlines()
     diskmap, fullmap = parse_data(data)
     print(diskmap)

@@ -98,7 +98,7 @@ def part2(data):
 
 
 if __name__ == "__main__":
-    with open("2024/data/08_test.txt") as file:
+    with open("2024/08/data/08_test.txt") as file:
         data = file.read().splitlines()
 
     grid = parse_data(data)

@@ -122,7 +122,7 @@ def part2(data):
 
 
 if __name__ == "__main__":
-    with open("2024/data/10_test.txt") as file:
+    with open("2024/10/data/10_test.txt") as file:
         data = file.read().splitlines()
 
     DEBUG = True
