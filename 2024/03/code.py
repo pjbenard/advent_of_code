@@ -42,7 +42,7 @@ def part2(data):
 
 
 if __name__ == "__main__":
-    with open("2024/data/03_test.txt") as file:
+    with open("2024/03/data/03_test.txt") as file:
         data = file.read().splitlines()
 
     res_p1 = part1(data)
