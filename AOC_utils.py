@@ -1,8 +1,9 @@
 from time import perf_counter_ns
+import pathlib
 
 
 def generate_module_name(YEAR, DAY):
-    return f"{YEAR}.{DAY:02d}"
+    return f"{YEAR}.{DAY:02d}.code"
 
 
 def read_data_from_filename(filename):
@@ -13,11 +14,16 @@ def read_data_from_filename(filename):
 
 
 def read_data(YEAR, DAY):
-    filename_test = f"{YEAR}/data/{DAY:02d}_test.txt"
-    filename_input = f"{YEAR}/data/{DAY:02d}_input.txt"
+    pathname = f"{YEAR}/{DAY:02d}/data"
+    path = pathlib.Path(pathname)
 
-    data_test = read_data_from_filename(filename_test)
-    data_input = read_data_from_filename(filename_input)
+    data_test = []
+    data_input = []
+    for filename in path.glob("*.txt"):
+        if "test" in filename.name:
+            data_test.append(read_data_from_filename(filename))
+        if "input" in filename.name:
+            data_input.append(read_data_from_filename(filename))
 
     return data_test, data_input
 
@@ -100,32 +106,39 @@ def execute_part(code, data, data_type):
     return output_data
 
 
-def execute_parts(data, module, PART_1, PART_2, TEST, INPUT):
+def execute_parts(data, module, PART_1, PART_2):
     output_data = []
-    if TEST:
-        output_data.append(["TEST"])
+    for id_test, data_test in enumerate(data["TEST"], start=1):
+        data_name = f"TEST {id_test}"
+        output_data.append([data_name])
         if PART_1:
-            output = execute_part(module.part1, data["TEST"], "TEST 1")
+            output = execute_part(module.part1, data_test, data_name)
             output_data[-1].extend(output)
         if PART_2:
-            output = execute_part(module.part2, data["TEST"], "TEST 2")
+            output = execute_part(module.part2, data_test, data_name)
             output_data[-1].extend(output)
-    if INPUT:
-        output_data.append(["INPUT"])
+    for id_input, data_input in enumerate(data["INPUT"], start=1):
+        data_name = f"INPUT {id_input}"
+        output_data.append([data_name])
         if PART_1:
-            output = execute_part(module.part1, data["INPUT"], "INPUT 1")
+            output = execute_part(module.part1, data_input, data_name)
             output_data[-1].extend(output)
         if PART_2:
-            output = execute_part(module.part2, data["INPUT"], "INPUT 2")
+            output = execute_part(module.part2, data_input, data_name)
             output_data[-1].extend(output)
 
     return output_data
 
 
 if __name__ == "__main__":
-    table = [
-        ["TEST", "36", "194.3 µs", "81", "154.7 µs"],
-        ["INPUT", "550", "6.2 ms", "1255", "4.8 ms"],
-    ]
+    # table = [
+    #     ["TEST", "36", "194.3 µs", "81", "154.7 µs"],
+    #     ["INPUT", "550", "6.2 ms", "1255", "4.8 ms"],
+    # ]
 
-    pretty_print_table(table)
+    # pretty_print_table(table)
+
+    pathname = "2024/12/data"
+    path = pathlib.Path(pathname)
+    for x in path.glob("*.txt"):
+        print(str(x))
