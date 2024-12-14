@@ -2,7 +2,7 @@ import importlib
 
 import AOC_utils as AOC
 
-YEAR, DAY = 2024, 5
+YEAR, DAY = 2024, 14
 
 TEST = True
 INPUT = True
