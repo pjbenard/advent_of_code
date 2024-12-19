@@ -11,7 +11,8 @@ def part2(data):
 
 
 if __name__ == "__main__":
-    with open("2024/17/data/17_test1.txt") as file:
+    YEAR, DAY = 2024, 19
+    with open(f"{YEAR}/{DAY}/data/{DAY}_test.txt") as file:
         data = file.read().splitlines()
 
     res_p1 = part1(data)
